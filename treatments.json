@@ -1,0 +1,26 @@
+{
+  "leaf_rust": {
+    "very_mild": "Apply neem oil spray (2ml/L) weekly. Ensure adequate spacing between plants for air circulation. Remove infected lower leaves.",
+    "mild": "Apply Trichoderma-based bio-fungicide (5g/L water). Practice field sanitation — remove and burn infected debris. Monitor crop every 3–4 days.",
+    "moderate": "Apply Propiconazole 25% EC @ 0.1% as foliar spray. Repeat in 15 days if needed. Avoid excess nitrogen fertilizer which worsens spread.",
+    "moderately_severe": "Spray Tebuconazole 25.9% EC @ 0.1% immediately. Remove severely infected plants to prevent spread. Consult local agricultural extension officer.",
+    "severe": "Apply Propiconazole + Trifloxystrobin (Nativo 75WG @ 0.4g/L) immediately. Quarantine affected field sections. Seek emergency support from local Krishi Vigyan Kendra (KVK)."
+  },
+  "stem_rust": {
+    "very_mild": "Apply garlic extract spray (50g crushed garlic/L) weekly. Monitor for new pustule formation. Ensure proper field drainage.",
+    "mild": "Apply copper oxychloride (3g/L) as foliar spray. Avoid overhead irrigation — switch to drip. Remove infected lower stems.",
+    "moderate": "Apply Mancozeb 75WP @ 2g/L or Zineb 75WP @ 2.5g/L. Spray under leaves and stems where spores accumulate.",
+    "moderately_severe": "Apply Tebuconazole 50% + Trifloxystrobin 25% WG @ 0.5g/L. Report outbreak to local agriculture department. Practice strict crop rotation next season.",
+    "severe": "Emergency: Spray Propiconazole 25EC @ 1ml/L immediately. Isolate affected rows. Harvest early if infection exceeds 60% canopy. Contact State Agriculture Department."
+  },
+  "stripe_rust": {
+    "very_mild": "Apply baking soda spray (5g/L) weekly to alter surface pH. Ensure good field drainage. Remove volunteer wheat plants nearby.",
+    "mild": "Spray Sulfur-based fungicide (Sulphowit @ 3g/L) during cool morning hours. Stripe rust thrives in cool weather — monitor temperature forecasts.",
+    "moderate": "Apply Propiconazole 25EC @ 0.1% or Hexaconazole 5EC @ 0.2%. Two sprays at 10-day intervals. Avoid dense planting in next season.",
+    "moderately_severe": "Apply Tebuconazole 25.9EC @ 1ml/L twice in 10 days. Flag leaf protection is critical at this stage. Consult krishi mitra for field inspection.",
+    "severe": "Emergency fungicide: Azoxystrobin 23SC @ 1ml/L + Propiconazole 25EC @ 1ml/L combined spray. Consider crop insurance claim. Early harvest may minimize losses."
+  },
+  "healthy": {
+    "any": "Crop appears healthy. Continue regular monitoring every 7–10 days. Maintain balanced NPK fertilization. Avoid waterlogging and practice preventive foliar sprays using copper-based fungicide as a precaution during humid seasons."
+  }
+}
