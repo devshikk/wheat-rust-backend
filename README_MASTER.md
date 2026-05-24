@@ -2,7 +2,7 @@
 
 **Author:** Vadde Vanshika  
 **Live Demo:** *(Vercel URL — added after deployment)*  
-**Backend API:** *(Render URL — added after deployment)*
+**Backend API:** https://wheat-rust-backend.onrender.com
 
 ---
 
