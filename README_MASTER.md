@@ -2,7 +2,7 @@
 
 **Author:** Vadde Vanshika  
 **Live Demo:** https://project-90vi5.vercel.app
-**Backend API:** https://wheat-rust-backend.onrender.com
+**Backend API:** https://shiikk-wheat-rust-backend.hf.space
 
 ---
 
