@@ -2,10 +2,10 @@
 FastAPI backend for the NextGen Wheat Rust Detection Platform.
 
 Endpoints:
-  POST /predict  — Full ML pipeline: CDAE → EfficientNet-B3 → SVM →
-                   Grad-CAM → CIELAB severity estimation → treatment advice
-  GET  /market   — Indian wheat mandi price data (regional + historical)
-  GET  /health   — Liveness probe for deployment health checks
+  POST /predict  - Full ML pipeline: CDAE -> EfficientNet-B3 -> SVM ->
+                   Grad-CAM -> CIELAB severity estimation -> treatment advice
+  GET  /market   - Indian wheat mandi price data (regional + historical)
+  GET  /health   - Liveness probe for deployment health checks
 """
 
 import json
@@ -20,12 +20,12 @@ from fastapi.middleware.cors import CORSMiddleware
 from inference import generate_gradcam, predict
 from severity import estimate_severity
 
-# ─── Treatment recommendations ───────────────────────────────────────────────
+# Load treatment recommendations from JSON
 _TREATMENTS_PATH = Path(__file__).parent / "treatments.json"
 with open(_TREATMENTS_PATH, encoding="utf-8") as f:
     TREATMENTS: dict = json.load(f)
 
-# Maps backend severity strings to treatment lookup keys
+# Maps severity labels to treatment lookup keys
 _SEV_KEY = {
     "Very Mild":         "very_mild",
     "Mild":              "mild",
@@ -34,7 +34,7 @@ _SEV_KEY = {
     "Severe":            "severe",
 }
 
-# ─── Market data (Indian mandi wheat prices) ─────────────────────────────────
+# Indian mandi wheat price data
 _MARKET_DATA = {
     "current_price": 2800,
     "forecast_price": 2920,
@@ -62,7 +62,6 @@ _MARKET_DATA = {
     ],
 }
 
-# ─── FastAPI application ──────────────────────────────────────────────────────
 app = FastAPI(
     title="Wheat Rust Detection API",
     description=(
@@ -83,17 +82,14 @@ app.add_middleware(
 )
 
 
-# ─── Helper ───────────────────────────────────────────────────────────────────
 def _get_treatment(rust_type: str | None, severity_level: str) -> str:
-    """Look up an actionable treatment recommendation from treatments.json."""
+    """Look up a treatment recommendation by rust type and severity."""
     if rust_type is None or rust_type == "healthy":
         return TREATMENTS["healthy"]["any"]
     sev_key  = _SEV_KEY.get(severity_level, "mild")
     rust_key = rust_type.lower().replace(" ", "_")
     return TREATMENTS.get(rust_key, {}).get(sev_key, "Consult your local agricultural officer.")
 
-
-# ─── Routes ───────────────────────────────────────────────────────────────────
 
 @app.get("/health")
 def health():
@@ -119,8 +115,8 @@ async def predict_image(file: UploadFile = File(...)):
     if not file.content_type.startswith("image/"):
         raise HTTPException(status_code=400, detail="Uploaded file must be an image.")
 
-    raw      = await file.read()
-    np_arr   = np.frombuffer(raw, np.uint8)
+    raw       = await file.read()
+    np_arr    = np.frombuffer(raw, np.uint8)
     image_bgr = cv2.imdecode(np_arr, cv2.IMREAD_COLOR)
 
     if image_bgr is None:
@@ -128,13 +124,13 @@ async def predict_image(file: UploadFile = File(...)):
 
     image_rgb = cv2.cvtColor(image_bgr, cv2.COLOR_BGR2RGB)
 
-    # Stage 1 + Stage 2 SVM classification
+    # Run two-stage SVM classification
     cls_result = predict(image_rgb)
 
-    # Grad-CAM heatmap (generated regardless of prediction for UI display)
+    # Generate Grad-CAM heatmap
     heatmap_array, gradcam_b64 = generate_gradcam(image_rgb)
 
-    # CIELAB severity estimation guided by the Grad-CAM activation map
+    # Estimate severity using CIELAB colour analysis guided by Grad-CAM
     if cls_result["status"] == "Diseased":
         severity_level, severity_ratio = estimate_severity(image_rgb, heatmap_array)
     else:
