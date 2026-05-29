@@ -1,7 +1,7 @@
 # NextGen Wheat Rust Intelligence
 
 **Author:** Vadde Vanshika  
-**Live Demo:** *(Vercel URL — added after deployment)*  
+**Live Demo:** https://project-90vi5.vercel.app
 **Backend API:** https://wheat-rust-backend.onrender.com
 
 ---
