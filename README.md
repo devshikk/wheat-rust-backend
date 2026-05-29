@@ -1,4 +1,15 @@
+---
+title: Wheat Rust Backend
+emoji: 🌾
+colorFrom: green
+colorTo: yellow
+sdk: docker
+pinned: false
+app_port: 7860
+---
+
 # Wheat Rust Detection — FastAPI Backend
+
 
 > **Author:** Vadde Vanshika  
 > **Part of:** NextGen Wheat Rust Intelligence — an AI-powered precision agriculture platform
